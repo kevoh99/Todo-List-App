@@ -11,7 +11,7 @@ todoList.addEventListener('click', deleteCheck)
 filterOption.addEventListener('click', filterTodo)
 
 // Functions
-function addTodo (event) {
+function addTodo(event) {
   // Prevent form from submitting
   event.preventDefault()
 
@@ -47,7 +47,7 @@ function addTodo (event) {
   todoInput.value = ''
 }
 
-function deleteCheck (e) {
+function deleteCheck(e) {
   const item = e.target
 
   // Delete TODO
@@ -96,7 +96,7 @@ function deleteCheck (e) {
   }
 }
 
-function filterTodo (e) {
+function filterTodo(e) {
   const todos = todoList.childNodes
   todos.forEach(function (todo) {
     switch (e.target.value) {
@@ -121,7 +121,7 @@ function filterTodo (e) {
   })
 }
 
-function saveLocalTodos (todo) {
+function saveLocalTodos(todo) {
   let todos
 
   // Check if you already have todos
@@ -139,7 +139,7 @@ function saveLocalTodos (todo) {
   window.localStorage.setItem('todos', JSON.stringify(todos))
 }
 
-function getTodos () {
+function getTodos() {
   let todos
   let todosComplete
 
@@ -189,21 +189,37 @@ function getTodos () {
   })
 }
 
-function removeLocalTodos (todo) {
+function removeLocalTodos(todo) {
   // Check if you already have todos in localStorage
   let todos
+  let todosComplete
 
-  console.log(window.localStorage.getItem('todos'))
+  // Get TODOs stored in localStorage (if any)
   if (window.localStorage.getItem('todos') === null) {
     todos = []
   } else {
     todos = JSON.parse(window.localStorage.getItem('todos'))
   }
 
-  console.log(todo.children[0].innerText)
+  // Get completed TODOs in localStorage (if any)
+  if (window.localStorage.getItem('todosComplete') === null) {
+    todosComplete = []
+  } else {
+    todosComplete = JSON.parse(window.localStorage.getItem('todosComplete'))
+  }
+
+  // Remove TODO
   const todoIndex = todo.children[0].innerText
   todos.splice(todos.indexOf(todoIndex), 1)
 
-  // Push back to localStorage
+  // Push changes back to localStorage
   window.localStorage.setItem('todos', JSON.stringify(todos))
+
+  // Check if TODO is in the todosComplete array
+  if (todosComplete.includes(todo.childNodes[0].innerText)) {
+    todosComplete.splice(todosComplete.indexOf(todo.childNodes[0].innerText), 1)
+
+    // Push to localStorage
+    window.localStorage.setItem('todosComplete', JSON.stringify(todosComplete))
+  }
 }
