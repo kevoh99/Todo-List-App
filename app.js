@@ -11,7 +11,7 @@ todoList.addEventListener('click', deleteCheck)
 filterOption.addEventListener('click', filterTodo)
 
 // Functions
-function addTodo(event) {
+function addTodo (event) {
   // Prevent form from submitting
   event.preventDefault()
 
@@ -47,7 +47,7 @@ function addTodo(event) {
   todoInput.value = ''
 }
 
-function deleteCheck(e) {
+function deleteCheck (e) {
   const item = e.target
 
   // Delete TODO
@@ -96,7 +96,7 @@ function deleteCheck(e) {
   }
 }
 
-function filterTodo(e) {
+function filterTodo (e) {
   const todos = todoList.childNodes
   todos.forEach(function (todo) {
     switch (e.target.value) {
@@ -121,7 +121,7 @@ function filterTodo(e) {
   })
 }
 
-function saveLocalTodos(todo) {
+function saveLocalTodos (todo) {
   let todos
 
   // Check if you already have todos
@@ -139,7 +139,7 @@ function saveLocalTodos(todo) {
   window.localStorage.setItem('todos', JSON.stringify(todos))
 }
 
-function getTodos() {
+function getTodos () {
   let todos
   let todosComplete
 
@@ -189,7 +189,7 @@ function getTodos() {
   })
 }
 
-function removeLocalTodos(todo) {
+function removeLocalTodos (todo) {
   // Check if you already have todos in localStorage
   let todos
   let todosComplete
