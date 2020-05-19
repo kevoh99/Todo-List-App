@@ -54,20 +54,45 @@ function deleteCheck (e) {
   if (item.classList[0] === 'trash-btn') {
     const todo = item.parentElement
 
-    // Animation
+    // Transition
     todo.classList.add('fall')
+
+    // Remove from localStorage
     removeLocalTodos(todo)
+
+    // Remove from todo list items after completion of transition
     todo.addEventListener('transitionend', function () {
       todo.remove()
     })
   }
 
-  // Check mark (For when completed)
+  // Mark TODO as completed
   if (item.classList[0] === 'complete-btn') {
     const todo = item.parentElement
     todo.classList.toggle('completed')
 
-    // Here is where we as well add the innerText to todoCompleted array in localStorage (if there is class of .completed)
+    // Add or remove the list item from todosComplete array in localStorage
+    let todosComplete
+    if (window.localStorage.getItem('todosComplete') === null) {
+      todosComplete = []
+    } else {
+      todosComplete = JSON.parse(window.localStorage.getItem('todosComplete'))
+    }
+
+    // Check what the effect of toggle above was
+    if (todo.classList.contains('completed')) {
+      // Push to todoscomplete array
+      todosComplete.push(todo.childNodes[0].innerText)
+
+      // Push the array values to localStorage
+      window.localStorage.setItem('todosComplete', JSON.stringify(todosComplete))
+    } else {
+      // If it doesn't contain .completed class (due to toggle effect), splice it out
+      todosComplete.splice((todosComplete.indexOf(todo.childNodes[0].innerText)), 1)
+
+      // Push the array values to localStorage
+      window.localStorage.setItem('todosComplete', JSON.stringify(todosComplete))
+    }
   }
 }
 
