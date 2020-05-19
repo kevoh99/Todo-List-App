@@ -140,15 +140,20 @@ function saveLocalTodos (todo) {
 }
 
 function getTodos () {
-  // Check if you already have todos
   let todos
+  let todosComplete
 
-  console.log(window.localStorage.getItem('todos'))
-
+  // Check if TODOs exist in localStorage
   if (window.localStorage.getItem('todos') === null) {
     todos = []
   } else {
     todos = JSON.parse(window.localStorage.getItem('todos'))
+  }
+
+  if (window.localStorage.getItem('todosComplete') === null) {
+    todosComplete = []
+  } else {
+    todosComplete = JSON.parse(window.localStorage.getItem('todosComplete'))
   }
 
   todos.forEach(function (todo) {
@@ -156,13 +161,18 @@ function getTodos () {
     const todoDiv = document.createElement('div')
     todoDiv.classList.add('todo')
 
+    // Check if TODO has been completed previously
+    if (todosComplete.includes(todo)) {
+      todoDiv.classList.toggle('completed')
+    }
+
     // Create li
     const newTodo = document.createElement('li')
     newTodo.classList.add('todo-item')
     newTodo.innerText = todo
     todoDiv.appendChild(newTodo)
 
-    // Check mark button (for completed todo)
+    // Checkmark button (for marking completed todos)
     const completedButton = document.createElement('button')
     completedButton.classList.add('complete-btn')
     completedButton.innerHTML = '<i class="fas fa-check"></i>'
