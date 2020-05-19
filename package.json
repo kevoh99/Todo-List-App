@@ -1,0 +1,17 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "A Todo list/ taska management app developed using Vanilla Javascript. This project is based on Dev Ed's Todo list Tutorial on Youtube: https://www.youtube.com/watch?v=Ttf3CEsEwMQ&t=5s",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todo",
+    "list",
+    "task",
+    "management"
+  ],
+  "author": "Kevin Njoroge",
+  "license": "ISC"
+}
