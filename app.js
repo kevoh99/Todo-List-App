@@ -133,7 +133,6 @@ function saveLocalTodos (todo) {
   }
 
   todos.push(todo) //  Add the input button value to the array
-  console.log(todos)
 
   // Push the array values to localStorage
   window.localStorage.setItem('todos', JSON.stringify(todos))
