@@ -29,6 +29,14 @@ form button {
   font-size: 2rem;
   border: none;
   background: white;
+  transition: all 0.3s ease;
+}
+
+form input:focus,
+form button:focus,
+form select:focus {
+  outline: 2px solid rgb(73, 204, 73);
+  outline-offset: -3px;
 }
 
 form button {
@@ -107,8 +115,13 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  -ms-appearance: none;
   border: none;
   outline: none;
+  color: #ff6f47;
+  width: 10rem;
+  cursor: pointer;
+  padding: 1.2rem;
 }
 
 /* The container div */
@@ -118,19 +131,14 @@ select {
   overflow: hidden;
 }
 
-select {
-  color: #ff6f47;
-  width: 10rem;
-  cursor: pointer;
-  padding: 1rem;
-}
-
 .select::after {
   content: "\25BC";
   position: absolute;
-  background: #ff6f47;
-  top: 0;
-  right: 0;
+  background: white;
+  color: #ff6f47;
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
   padding: 1rem;
   pointer-events: none; /* You can now click through it */
   transition: all 0.3s ease;
