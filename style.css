@@ -124,6 +124,10 @@ select {
   padding: 1.2rem;
 }
 
+select:focus > option {
+  background: white;
+  color: #ff6f47;
+}
 /* The container div */
 .select {
   margin: 1rem;
